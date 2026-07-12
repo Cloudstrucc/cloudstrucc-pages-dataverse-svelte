@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.user
+*.suo
+*.log
+coverage/
+.pac/
+.auth/
+solution/**/obj/
+solution/**/bin/
+.vscode/settings.json
+.DS_Store
+Thumbs.db

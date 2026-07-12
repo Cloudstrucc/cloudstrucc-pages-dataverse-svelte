@@ -1,0 +1,13 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "cs_PagesProvisioningMode",
+      "Value": "Development"
+    },
+    {
+      "SchemaName": "cs_DefaultTheme",
+      "Value": "bootstrap"
+    }
+  ],
+  "ConnectionReferences": []
+}

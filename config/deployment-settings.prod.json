@@ -1,0 +1,13 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "cs_PagesProvisioningMode",
+      "Value": "Production"
+    },
+    {
+      "SchemaName": "cs_DefaultTheme",
+      "Value": "gcdesign"
+    }
+  ],
+  "ConnectionReferences": []
+}

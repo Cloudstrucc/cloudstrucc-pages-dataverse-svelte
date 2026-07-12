@@ -1,0 +1,21 @@
+<ImportExportXml version="9.2.0.0" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="Cloudstrucc">
+  <SolutionManifest>
+    <UniqueName>CloudstruccPagesStudio</UniqueName>
+    <LocalizedNames><LocalizedName description="Cloudstrucc Pages Studio" languagecode="1033" /></LocalizedNames>
+    <Descriptions><Description description="Cloudstrucc Pages Studio Dataverse solution" languagecode="1033" /></Descriptions>
+    <Version>1.0.0.0</Version>
+    <Managed>0</Managed>
+    <Publisher>
+      <UniqueName>Cloudstrucc</UniqueName>
+      <LocalizedNames><LocalizedName description="Cloudstrucc" languagecode="1033" /></LocalizedNames>
+      <Descriptions />
+      <EMailAddress>info@cloudstrucc.com</EMailAddress>
+      <SupportingWebsiteUrl>https://cloudstrucc.com</SupportingWebsiteUrl>
+      <CustomizationPrefix>cs</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>72700</CustomizationOptionValuePrefix>
+      <Addresses><Address><AddressNumber>1</AddressNumber><AddressTypeCode>1</AddressTypeCode></Address></Addresses>
+    </Publisher>
+    <RootComponents />
+    <MissingDependencies />
+  </SolutionManifest>
+</ImportExportXml>

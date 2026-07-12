@@ -1,12 +1,11 @@
 {
   "name": "cloudstrucc-pages-dataverse",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.4",
   "scripts": {
-    "validate": "python3 scripts/validate_repo.py",
-    "pack:fallback": "python3 scripts/pack_fallback.py",
-    "test": "npm run validate",
-    "build": "npm run validate && npm run pack:fallback"
+    "validate": "python3 scripts/validate-schema.py && python3 -m py_compile scripts/bootstrap-dataverse.py",
+    "test": "npm run validate && ./scripts/bootstrap-dataverse.sh --environment-url https://example.crm3.dynamics.com --dry-run --skip-webresources",
+    "build": "echo 'Use ./scripts/first-install.sh --environment-url <DEV_URL> to create Dataverse-generated solution ZIPs.'"
   },
   "devDependencies": {}
 }

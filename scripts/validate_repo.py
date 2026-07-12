@@ -23,7 +23,7 @@ for p in (root/"solution").glob("*/packed/*.zip"):
   try:
     with zipfile.ZipFile(p) as z:
       names=set(z.namelist())
-      for req in ("Other/Solution.xml","Other/Customizations.xml","[Content_Types].xml"):
+      for req in ("solution.xml","customizations.xml","[Content_Types].xml"):
         if req not in names: errors.append(f"{p} missing {req}")
   except Exception as e: errors.append(f"Invalid ZIP {p}: {e}")
 if errors:

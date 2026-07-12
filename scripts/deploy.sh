@@ -1,75 +1,45 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 ENVIRONMENT_URL=""
-PACKAGE_TYPE="managed"
-SETTINGS_FILE="$ROOT_DIR/config/deployment-settings.prod.json"
+PACKAGE_TYPE="unmanaged"
+SOLUTION_PATH=""
+SETTINGS_FILE=""
 
 usage() {
-  cat <<'USAGE'
+  cat <<'EOF'
 Usage:
-  ./scripts/deploy.sh \
-    --environment-url https://YOURORG.crm3.dynamics.com \
-    [--package-type managed|unmanaged] \
-    [--settings-file ./config/deployment-settings.prod.json]
+  ./scripts/deploy.sh --environment-url URL [--package-type unmanaged|managed]
+                      [--solution-path PATH] [--settings-file PATH]
 
-Options:
-  --environment-url  Target Dataverse environment URL. Required.
-  --package-type     managed or unmanaged. Default: managed.
-  --settings-file    Deployment settings JSON. Use an empty string to omit it.
-  -h, --help         Show this help text.
-USAGE
+Deploys an authoritative solution ZIP previously exported from Dataverse.
+EOF
 }
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --environment-url)
-      ENVIRONMENT_URL="${2:-}"
-      shift 2
-      ;;
-    --package-type)
-      PACKAGE_TYPE="${2:-}"
-      shift 2
-      ;;
-    --settings-file)
-      SETTINGS_FILE="${2:-}"
-      shift 2
-      ;;
-    -h|--help)
-      usage
-      exit 0
-      ;;
-    *)
-      echo "Error: unknown argument: $1" >&2
-      usage >&2
-      exit 2
-      ;;
+    --environment-url) ENVIRONMENT_URL="${2:-}"; shift 2 ;;
+    --package-type) PACKAGE_TYPE="${2:-}"; shift 2 ;;
+    --solution-path) SOLUTION_PATH="${2:-}"; shift 2 ;;
+    --settings-file) SETTINGS_FILE="${2:-}"; shift 2 ;;
+    -h|--help) usage; exit 0 ;;
+    *) echo "Unknown argument: $1" >&2; usage >&2; exit 2 ;;
   esac
 done
 
-if [[ -z "$ENVIRONMENT_URL" ]]; then
-  echo "Error: --environment-url is required." >&2
-  usage >&2
-  exit 2
+[[ -n "$ENVIRONMENT_URL" ]] || { echo "--environment-url is required" >&2; exit 2; }
+[[ "$PACKAGE_TYPE" == "managed" || "$PACKAGE_TYPE" == "unmanaged" ]] || { echo "Invalid --package-type" >&2; exit 2; }
+
+if [[ -z "$SOLUTION_PATH" ]]; then
+  SOLUTION_PATH="$ROOT_DIR/solution/exported/full/CloudstruccPagesStudio_1_0_5_0_${PACKAGE_TYPE}.zip"
 fi
+[[ -f "$SOLUTION_PATH" ]] || {
+  echo "Exported solution not found: $SOLUTION_PATH" >&2
+  echo "Create it first with scripts/first-install.sh or scripts/export-solutions.sh." >&2
+  exit 1
+}
 
-if [[ "$PACKAGE_TYPE" != "managed" && "$PACKAGE_TYPE" != "unmanaged" ]]; then
-  echo "Error: --package-type must be 'managed' or 'unmanaged'." >&2
-  exit 2
-fi
-
-"$SCRIPT_DIR/build-solutions.sh"
-
-SOLUTION_PATH="$ROOT_DIR/solution/full/packed/CloudstruccPagesStudio_1_0_0_0_${PACKAGE_TYPE}.zip"
-IMPORT_ARGS=(
-  --environment-url "$ENVIRONMENT_URL"
-  --solution-path "$SOLUTION_PATH"
-)
-
-if [[ -n "$SETTINGS_FILE" ]]; then
-  IMPORT_ARGS+=(--settings-file "$SETTINGS_FILE")
-fi
-
-"$SCRIPT_DIR/import-solution.sh" "${IMPORT_ARGS[@]}"
+args=(--environment-url "$ENVIRONMENT_URL" --solution-path "$SOLUTION_PATH")
+[[ -n "$SETTINGS_FILE" ]] && args+=(--settings-file "$SETTINGS_FILE")
+exec "$SCRIPT_DIR/import-solution.sh" "${args[@]}"

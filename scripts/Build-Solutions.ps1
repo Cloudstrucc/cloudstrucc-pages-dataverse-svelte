@@ -1,7 +1,10 @@
-param([string]$Pac = "pac")
-$ErrorActionPreference = "Stop"
-$root = Split-Path -Parent $PSScriptRoot
-& $Pac solution pack --zipfile "$root/solution/schema/packed/CloudstruccPagesSchema_1_0_0_0_unmanaged.zip" --folder "$root/solution/schema/unpacked" --packagetype Unmanaged --allowWrite --clobber
-& $Pac solution pack --zipfile "$root/solution/schema/packed/CloudstruccPagesSchema_1_0_0_0_managed.zip" --folder "$root/solution/schema/unpacked" --packagetype Managed --useUnmanagedFileForMissingManaged --allowWrite --clobber
-& $Pac solution pack --zipfile "$root/solution/full/packed/CloudstruccPagesStudio_1_0_0_0_unmanaged.zip" --folder "$root/solution/full/unpacked" --packagetype Unmanaged --allowWrite --clobber
-& $Pac solution pack --zipfile "$root/solution/full/packed/CloudstruccPagesStudio_1_0_0_0_managed.zip" --folder "$root/solution/full/unpacked" --packagetype Managed --useUnmanagedFileForMissingManaged --allowWrite --clobber
+$ErrorActionPreference = 'Stop'
+Write-Error @'
+The hand-authored XML packing workflow has been retired because Dataverse rejected
+its table metadata. Run the macOS/Linux bootstrap/export workflow from Bash, or
+implement the equivalent Dataverse Web API bootstrap for PowerShell before exporting
+solutions from a build environment.
+
+Recommended:
+  ./scripts/first-install.sh --environment-url https://YOUR-DEV.crm3.dynamics.com
+'@

@@ -1,0 +1,677 @@
+{
+  "publisher": {
+    "uniqueName": "Cloudstrucc",
+    "friendlyName": "Cloudstrucc",
+    "prefix": "cs",
+    "optionValuePrefix": 10000,
+    "website": "https://cloudstrucc.com"
+  },
+  "solutions": {
+    "schema": {
+      "uniqueName": "CloudstruccPagesSchema",
+      "friendlyName": "Cloudstrucc Pages Schema",
+      "version": "1.0.5.0"
+    },
+    "full": {
+      "uniqueName": "CloudstruccPagesStudio",
+      "friendlyName": "Cloudstrucc Pages Studio",
+      "version": "1.0.5.0"
+    }
+  },
+  "tables": [
+    {
+      "schemaName": "cs_Website",
+      "logicalName": "cs_website",
+      "displayName": "Website",
+      "displayCollectionName": "Websites",
+      "description": "Cloudstrucc Pages website configuration.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_SiteUrl",
+          "displayName": "Site URL",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_PowerPagesWebsiteId",
+          "displayName": "Power Pages Website ID",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_ThemeKey",
+          "displayName": "Theme Key",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_DefaultLanguage",
+          "displayName": "Default Language",
+          "type": "string",
+          "maxLength": 20
+        },
+        {
+          "schemaName": "cs_LanguagesJson",
+          "displayName": "Languages JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_Status",
+          "displayName": "Status",
+          "type": "integer",
+          "minValue": 0,
+          "maxValue": 100
+        },
+        {
+          "schemaName": "cs_ConfigurationJson",
+          "displayName": "Configuration JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_AuthenticationMode",
+          "displayName": "Authentication Mode",
+          "type": "string",
+          "maxLength": 50
+        },
+        {
+          "schemaName": "cs_InvitationOnly",
+          "displayName": "Invitation Only",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "schemaName": "cs_DomainName",
+          "displayName": "Domain Name",
+          "type": "string",
+          "maxLength": 255
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_Page",
+      "logicalName": "cs_page",
+      "displayName": "Page",
+      "displayCollectionName": "Pages",
+      "description": "A page managed by Cloudstrucc Pages Studio.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_WebsiteId",
+          "displayName": "Website ID",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_Route",
+          "displayName": "Route",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_Title",
+          "displayName": "Title",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "schemaName": "cs_ParentPageId",
+          "displayName": "Parent Page ID",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_Language",
+          "displayName": "Language",
+          "type": "string",
+          "maxLength": 20
+        },
+        {
+          "schemaName": "cs_TemplateKey",
+          "displayName": "Template Key",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_Status",
+          "displayName": "Status",
+          "type": "integer",
+          "minValue": 0,
+          "maxValue": 100
+        },
+        {
+          "schemaName": "cs_SortOrder",
+          "displayName": "Sort Order",
+          "type": "integer",
+          "minValue": 0,
+          "maxValue": 100000
+        },
+        {
+          "schemaName": "cs_IsPublished",
+          "displayName": "Published",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "schemaName": "cs_Source",
+          "displayName": "Source",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_Css",
+          "displayName": "CSS",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_Script",
+          "displayName": "JavaScript",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_ComponentDefinition",
+      "logicalName": "cs_componentdefinition",
+      "displayName": "Component Definition",
+      "displayCollectionName": "Component Definitions",
+      "description": "Reusable Svelte component definition.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Key",
+          "displayName": "Key",
+          "type": "string",
+          "maxLength": 150
+        },
+        {
+          "schemaName": "cs_Category",
+          "displayName": "Category",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_SvelteComponent",
+          "displayName": "Svelte Component",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_ConfigSchema",
+          "displayName": "Configuration Schema",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_DefaultMarkup",
+          "displayName": "Default Markup",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_DefaultCss",
+          "displayName": "Default CSS",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_ComponentInstance",
+      "logicalName": "cs_componentinstance",
+      "displayName": "Component Instance",
+      "displayCollectionName": "Component Instances",
+      "description": "Placed component instance on a page.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_PageId",
+          "displayName": "Page ID",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_ComponentDefinitionId",
+          "displayName": "Component Definition ID",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_Order",
+          "displayName": "Order",
+          "type": "integer",
+          "minValue": 0,
+          "maxValue": 100000
+        },
+        {
+          "schemaName": "cs_GridColumn",
+          "displayName": "Grid Column",
+          "type": "integer",
+          "minValue": 1,
+          "maxValue": 100
+        },
+        {
+          "schemaName": "cs_GridSpan",
+          "displayName": "Grid Span",
+          "type": "integer",
+          "minValue": 1,
+          "maxValue": 100
+        },
+        {
+          "schemaName": "cs_ConfigurationJson",
+          "displayName": "Configuration JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_Source",
+          "displayName": "Source",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_Theme",
+      "logicalName": "cs_theme",
+      "displayName": "Theme",
+      "displayCollectionName": "Themes",
+      "description": "Theme and adapter configuration.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Key",
+          "displayName": "Key",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_CssUrl",
+          "displayName": "CSS URL",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_TokensJson",
+          "displayName": "Tokens JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_AdapterJson",
+          "displayName": "Adapter JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_Asset",
+      "logicalName": "cs_asset",
+      "displayName": "Asset",
+      "displayCollectionName": "Assets",
+      "description": "Image, icon, favicon, script, or stylesheet asset.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Type",
+          "displayName": "Type",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_Url",
+          "displayName": "URL",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_AltText",
+          "displayName": "Alternative Text",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_MetadataJson",
+          "displayName": "Metadata JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_DataSource",
+      "logicalName": "cs_datasource",
+      "displayName": "Data Source",
+      "displayCollectionName": "Data Sources",
+      "description": "Dataverse, FetchXML, OData, REST, or static data source.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Type",
+          "displayName": "Type",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_EntitySet",
+          "displayName": "Entity Set",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "schemaName": "cs_Query",
+          "displayName": "Query",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_AuthMode",
+          "displayName": "Authentication Mode",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_ConfigurationJson",
+          "displayName": "Configuration JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_IdentityProvider",
+      "logicalName": "cs_identityprovider",
+      "displayName": "Identity Provider",
+      "displayCollectionName": "Identity Providers",
+      "description": "Website identity provider configuration.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Type",
+          "displayName": "Type",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_Enabled",
+          "displayName": "Enabled",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "schemaName": "cs_ConfigurationJson",
+          "displayName": "Configuration JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_Permission",
+      "logicalName": "cs_permission",
+      "displayName": "Permission",
+      "displayCollectionName": "Permissions",
+      "description": "Table, row, relationship, or column permission.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Type",
+          "displayName": "Type",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_TableLogicalName",
+          "displayName": "Table Logical Name",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "schemaName": "cs_ColumnLogicalName",
+          "displayName": "Column Logical Name",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "schemaName": "cs_Privileges",
+          "displayName": "Privileges",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_ParentPermissionId",
+          "displayName": "Parent Permission ID",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_ConfigurationJson",
+          "displayName": "Configuration JSON",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_Localization",
+      "logicalName": "cs_localization",
+      "displayName": "Localization",
+      "displayCollectionName": "Localizations",
+      "description": "Localized string and AI translation state.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Key",
+          "displayName": "Key",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "schemaName": "cs_Locale",
+          "displayName": "Locale",
+          "type": "string",
+          "maxLength": 20
+        },
+        {
+          "schemaName": "cs_Value",
+          "displayName": "Value",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_SourceValue",
+          "displayName": "Source Value",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_AiTranslated",
+          "displayName": "AI Translated",
+          "type": "boolean",
+          "defaultValue": false
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_Deployment",
+      "logicalName": "cs_deployment",
+      "displayName": "Deployment",
+      "displayCollectionName": "Deployments",
+      "description": "Deployment and ALM execution record.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Status",
+          "displayName": "Status",
+          "type": "integer",
+          "minValue": 0,
+          "maxValue": 100
+        },
+        {
+          "schemaName": "cs_Environment",
+          "displayName": "Environment",
+          "type": "string",
+          "maxLength": 255
+        },
+        {
+          "schemaName": "cs_Version",
+          "displayName": "Version",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "schemaName": "cs_StartedOn",
+          "displayName": "Started On",
+          "type": "datetime"
+        },
+        {
+          "schemaName": "cs_CompletedOn",
+          "displayName": "Completed On",
+          "type": "datetime"
+        },
+        {
+          "schemaName": "cs_Details",
+          "displayName": "Details",
+          "type": "memo",
+          "maxLength": 1048576
+        }
+      ]
+    },
+    {
+      "schemaName": "cs_AuditLog",
+      "logicalName": "cs_auditlog",
+      "displayName": "Audit Log",
+      "displayCollectionName": "Audit Logs",
+      "description": "Cloudstrucc Pages Studio action log.",
+      "primaryName": {
+        "schemaName": "cs_Name",
+        "displayName": "Name",
+        "maxLength": 200
+      },
+      "columns": [
+        {
+          "schemaName": "cs_Action",
+          "displayName": "Action",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "schemaName": "cs_Actor",
+          "displayName": "Actor",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_Target",
+          "displayName": "Target",
+          "type": "string",
+          "maxLength": 500
+        },
+        {
+          "schemaName": "cs_Details",
+          "displayName": "Details",
+          "type": "memo",
+          "maxLength": 1048576
+        },
+        {
+          "schemaName": "cs_EventTime",
+          "displayName": "Event Time",
+          "type": "datetime"
+        }
+      ]
+    }
+  ],
+  "webResources": [
+    {
+      "name": "cs_/cloudstrucc/pages/admin.html",
+      "displayName": "Cloudstrucc Pages Admin",
+      "type": 1,
+      "path": "src/admin-webresource/index.html"
+    },
+    {
+      "name": "cs_/cloudstrucc/pages/studio-bootstrap.html",
+      "displayName": "Cloudstrucc Pages Studio - Bootstrap",
+      "type": 1,
+      "path": "src/studio-webresources/studio-bootstrap.html"
+    },
+    {
+      "name": "cs_/cloudstrucc/pages/studio-landwind.html",
+      "displayName": "Cloudstrucc Pages Studio - Landwind",
+      "type": 1,
+      "path": "src/studio-webresources/studio-landwind.html"
+    },
+    {
+      "name": "cs_/cloudstrucc/pages/studio-gcdesign.html",
+      "displayName": "Cloudstrucc Pages Studio - GC Design",
+      "type": 1,
+      "path": "src/studio-webresources/studio-gcdesign.html"
+    },
+    {
+      "name": "cs_/cloudstrucc/pages/admin.css",
+      "displayName": "Cloudstrucc Pages Admin CSS",
+      "type": 2,
+      "path": "src/shared/css/admin.css"
+    },
+    {
+      "name": "cs_/cloudstrucc/pages/dataverse-client.js",
+      "displayName": "Cloudstrucc Dataverse Client",
+      "type": 3,
+      "path": "src/shared/js/dataverse-client.js"
+    },
+    {
+      "name": "cs_/cloudstrucc/pages/provisioner.js",
+      "displayName": "Cloudstrucc Site Provisioner",
+      "type": 3,
+      "path": "src/shared/js/provisioner.js"
+    }
+  ]
+}

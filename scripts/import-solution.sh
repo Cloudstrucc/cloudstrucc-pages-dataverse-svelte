@@ -2,6 +2,9 @@
 set -euo pipefail
 
 PAC_BIN="${PAC_BIN:-pac}"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 ENVIRONMENT_URL=""
 SOLUTION_PATH=""
 SETTINGS_FILE=""
@@ -11,7 +14,7 @@ usage() {
 Usage:
   ./scripts/import-solution.sh \
     --environment-url https://YOURORG.crm3.dynamics.com \
-    --solution-path ./solution/full/packed/CloudstruccPagesStudio_1_0_0_0_unmanaged.zip \
+    --solution-path ./solution/exported/full/CloudstruccPagesStudio_1_0_5_0_unmanaged.zip \
     [--settings-file ./config/deployment-settings.dev.json]
 
 Options:
@@ -59,6 +62,11 @@ if ! command -v "$PAC_BIN" >/dev/null 2>&1; then
   exit 127
 fi
 
+if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
+  echo "Error: '$PYTHON_BIN' was not found in PATH." >&2
+  exit 127
+fi
+
 if [[ ! -f "$SOLUTION_PATH" ]]; then
   echo "Error: solution file not found: $SOLUTION_PATH" >&2
   exit 1
@@ -82,6 +90,8 @@ if [[ -n "$SETTINGS_FILE" ]]; then
   SETTINGS_FILE="$(cd "$(dirname "$SETTINGS_FILE")" && pwd)/$(basename "$SETTINGS_FILE")"
   args+=(--settings-file "$SETTINGS_FILE")
 fi
+
+"$PYTHON_BIN" "$ROOT_DIR/scripts/validate-solution-zip.py" "$SOLUTION_PATH"
 
 echo "Importing solution into $ENVIRONMENT_URL"
 "$PAC_BIN" "${args[@]}"

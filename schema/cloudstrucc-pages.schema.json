@@ -672,6 +672,25 @@
       "displayName": "Cloudstrucc Site Provisioner",
       "type": 3,
       "path": "src/shared/js/provisioner.js"
+    },
+    {
+      "name": "cs_/cloudstrucc/pages/admin-icon.svg",
+      "displayName": "Cloudstrucc Pages Admin App Icon",
+      "type": 11,
+      "path": "src/shared/icons/admin-app-icon.svg"
     }
-  ]
+  ],
+  "siteMap": {
+    "name": "Cloudstrucc Pages Admin Sitemap",
+    "uniqueName": "cs_cloudstruccpagesadminsitemap",
+    "adminWebResourceName": "cs_/cloudstrucc/pages/admin.html",
+    "iconWebResourceName": "cs_/cloudstrucc/pages/admin-icon.svg",
+    "xmlTemplate": "<SiteMap><Area Id=\"cs_admin_area\" ShowGroups=\"false\" Title=\"Cloudstrucc\" Icon=\"{iconUrl}\"><Group Id=\"cs_admin_group\" Title=\"Administration\"><SubArea Id=\"cs_admin_subarea\" Title=\"Admin Console\" Url=\"{adminUrl}\" Icon=\"{iconUrl}\" AvailableOffline=\"false\" /></Group></Area></SiteMap>"
+  },
+  "appModule": {
+    "name": "Cloudstrucc Pages Admin",
+    "uniqueName": "cs_cloudstruccpagesadmin3",
+    "description": "Administration console for provisioning and managing Cloudstrucc Pages Power Pages websites.",
+    "iconWebResourceName": "cs_/cloudstrucc/pages/admin-icon.svg"
+  }
 }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Cloudstrucc Pages Admin">
+  <rect width="32" height="32" rx="6" fill="#243b53"/>
+  <path d="M8 21.5V13a1 1 0 0 1 .49-.86l7-4.2a1 1 0 0 1 1.02 0l7 4.2a1 1 0 0 1 .49.86v8.5" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M11.5 21.5V16a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v5.5" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="17.6" r="1.15" fill="#2563eb"/>
+</svg>

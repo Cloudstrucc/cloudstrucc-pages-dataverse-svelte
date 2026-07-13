@@ -5,7 +5,13 @@
   "scripts": {
     "validate": "python3 scripts/validate-schema.py && python3 -m py_compile scripts/bootstrap-dataverse.py",
     "test": "npm run validate && ./scripts/bootstrap-dataverse.sh --environment-url https://example.crm3.dynamics.com --dry-run --skip-webresources",
+    "test:ui": "playwright test --config=tests/ui/playwright.config.js",
+    "test:ui:wireframes": "playwright test --config=tests/ui/playwright.config.js --project=wireframes",
+    "test:ui:webresources": "playwright test --config=tests/ui/playwright.config.js --project=webresources",
+    "test:ui:install": "playwright install --with-deps chromium",
     "build": "echo 'Use ./scripts/first-install.sh --environment-url <DEV_URL> to create Dataverse-generated solution ZIPs.'"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
 }

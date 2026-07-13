@@ -12,10 +12,11 @@ Version **1.0.5.0** creates the tables through the Dataverse metadata Web API. E
 
 - macOS, Linux, or Windows
 - Python 3.10 or later
+- Node.js 18 or later and npm (only required for the Playwright UI test suite, see `docs/TESTING.md`)
 - Azure CLI (`az`)
 - Microsoft Power Platform CLI (`pac`)
 - Dataverse System Administrator or System Customizer privileges
-- Permission to create tables, solutions, and web resources
+- Permission to create tables, solutions, web resources, SiteMaps, and model-driven apps
 
 Authenticate first:
 
@@ -47,10 +48,22 @@ The operation is idempotent. If an earlier run created `cs_website` and then sto
    - `CloudstruccPagesStudio`
 3. Publishes pending metadata from any interrupted earlier run.
 4. Creates or repairs all 12 Cloudstrucc tables.
-5. Creates or updates the admin and Studio web resources.
+5. Creates or updates the admin and Studio web resources (including the admin app icon).
 6. Sets the admin HTML web resource as the full solution configuration page.
-7. Publishes all customizations.
-8. Exports Dataverse-generated solution ZIPs.
+7. Creates or updates the `Cloudstrucc Pages Admin Sitemap` SiteMap, pointing its subarea at the admin web resource via a `$webresource:` directive.
+8. Creates or updates the `Cloudstrucc Pages Admin` model-driven app (AppModule), attaches the SiteMap and admin web resource to it via `AddAppComponents`, runs `ValidateApp`, and publishes the app.
+9. Publishes all customizations.
+10. Exports Dataverse-generated solution ZIPs.
+
+## Accessing the admin console as a model-driven app
+
+Earlier versions only exposed the admin web resource as a raw HTML file with no app shell around it. As of this bootstrap, the admin console is reachable the normal Dataverse way:
+
+1. In the target environment, open **Apps** (make.powerapps.com or the classic app list).
+2. Launch **Cloudstrucc Pages Admin**.
+3. The SiteMap opens directly to the **Admin Console** subarea, which renders `admin.html`.
+
+This pass wires up the app/form/SiteMap shell only. The admin console's "Create website" flow currently updates its own in-memory demo state client-side and does not yet write to Dataverse — `src/shared/js/dataverse-client.js` and `src/shared/js/provisioner.js` contain a working `cs_website` draft-creation client but are not referenced by `admin.html` yet. Wiring the UI to those files, and the governed provisioning flow or custom API that turns a draft into a live Power Pages site (`docs/POWER_PAGES_PROVISIONING.md`), is separate, later work.
 
 ## Expected exported packages
 
@@ -156,6 +169,11 @@ python3 scripts/validate-schema.py
 python3 -m unittest discover -s tests -v
 python3 -m py_compile scripts/bootstrap-dataverse.py
 bash -n scripts/*.sh
+
+# UI regression suite (Playwright; see docs/TESTING.md for the wireframe-first workflow)
+npm install
+npm run test:ui:install   # one-time browser download
+npm run test:ui
 ```
 
 ## Repository layout
@@ -169,10 +187,13 @@ scripts/import-solution.sh     Validated solution import
 src/admin-webresource/         Admin console web resource
 src/studio-webresources/       Themed Studio web resources
 src/shared/                    Shared browser resources
+wireframes/                    POC wireframes (edit + approve here before src/)
+tests/                         Python payload unit tests
+tests/ui/                      Playwright UI regression suite (wireframes + webresources)
 solution/exported/             Dataverse-generated packages
 skills/                        Agent skills
 AGENTS.md                      Codex/agent instructions
 CLAUDE.md                      Claude Code instructions
 ```
 
-See `docs/DATAVERSE_BOOTSTRAP.md`, `docs/DEPLOYMENT.md`, and `docs/TROUBLESHOOTING.md` for more detail.
+See `docs/DATAVERSE_BOOTSTRAP.md`, `docs/DEPLOYMENT.md`, `docs/TROUBLESHOOTING.md`, and `docs/TESTING.md` for more detail.

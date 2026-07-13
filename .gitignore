@@ -7,6 +7,9 @@ dist/
 *.suo
 *.log
 coverage/
+test-results/
+playwright-report/
+.claude/
 .pac/
 .auth/
 solution/**/obj/
